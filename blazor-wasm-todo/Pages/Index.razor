@@ -1,7 +1,47 @@
-﻿@page "/"
+﻿@using blazor_wasm_todo.Components
+@using blazor_wasm_todo.Models
 
-<h1>Hello, world!</h1>
-<p> Welcome to my new app.</p>
+@page "/"
 
 
-@*<SurveyPrompt Title="How is Blazor working for you?" />*@
+<div class="container">
+    <h2>Список дел</h2>
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Введите текст заметки..." @bind-value="@title">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" @onclick="Add">Добавить</button>
+        </div>
+    </div>
+
+    <div>
+        @foreach (var note in notes.OrderByDescending(x => x.DateTime))
+        {
+            <NoteCard Title="@note.Title" />
+        }
+    </div>
+
+    @if (notes.Count > 0)
+    {
+        <button class="btn btn-danger" @onclick="Clear">Очистить все</button>
+    }
+</div>
+
+@code{
+    private List<Note> notes = Note.GetData();
+    private string title;
+
+    private void Clear()
+    {
+        notes.Clear();
+    }
+
+    private void Add()
+    {
+        if (!string.IsNullOrWhiteSpace(title))
+        {
+            notes.Add(new Note(title));
+            title = null;
+        }
+    }
+}

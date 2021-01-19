@@ -1,0 +1,26 @@
+﻿<div class="alert alert-secondary">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-start align-items-center">
+            <input class="m-1" type="checkbox" @bind="@IsDone" />
+            @if (IsDone)
+            {
+                <strike>@Title</strike>
+            }
+            else
+            {
+                @Title
+            }
+        </div>
+
+        <button class="close">
+            <span>&times;</span>
+        </button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public bool IsDone { get; set; }
+}
