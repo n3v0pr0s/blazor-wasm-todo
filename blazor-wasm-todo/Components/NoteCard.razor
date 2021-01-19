@@ -1,37 +1,36 @@
-﻿<div class="alert alert-secondary">
+﻿@using blazor_wasm_todo.Models
+
+<div class="alert alert-secondary">
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-start align-items-center">
-            <input class="m-1" type="checkbox" @bind-value="@IsDone" />
-            @if (IsDone)
+            <input class="m-1" type="checkbox" @bind="@Note.IsDone" />
+            @if (Note.IsDone)
             {
-                <strike>@Title</strike>
+                <strike>@Note.Title</strike>
             }
             else
             {
-                @Title
+                @Note.Title
             }
         </div>
 
-        <button class="close" @onclick="NoteRemoved">
+        <button class="close" @onclick="RemoveClick">
             <span>&times;</span>
         </button>
     </div>
 </div>
 
 @code {
+
     [Parameter]
-    public string Title { get; set; }
-    [Parameter]
-    public bool IsDone { get; set; }
-    [Parameter]
-    public Guid Guid { get; set; }
+    public Note Note { get; set; }
 
     [Parameter]
     public EventCallback<Guid> OnRemoved { get; set; }
 
 
-    public async Task NoteRemoved(EventArgs e)
+    public async Task RemoveClick(EventArgs e)
     {
-        await OnRemoved.InvokeAsync(Guid);
+        await OnRemoved.InvokeAsync(Note.Guid);
     }
 }

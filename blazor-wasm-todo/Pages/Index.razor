@@ -17,7 +17,7 @@
     <div>
         @foreach (var note in notes.OrderByDescending(x => x.DateTime))
         {
-            <NoteCard Guid="@note.Guid" Title="@note.Title" IsDone="@note.IsDone" OnRemoved="Remove" />
+            <NoteCard Note="@note" OnRemoved="Remove" />
         }
     </div>
 
