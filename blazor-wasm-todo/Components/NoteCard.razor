@@ -1,7 +1,7 @@
 ﻿<div class="alert alert-secondary">
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-start align-items-center">
-            <input class="m-1" type="checkbox" @bind="@IsDone" />
+            <input class="m-1" type="checkbox" @bind-value="@IsDone" />
             @if (IsDone)
             {
                 <strike>@Title</strike>
@@ -12,7 +12,7 @@
             }
         </div>
 
-        <button class="close">
+        <button class="close" @onclick="NoteRemoved">
             <span>&times;</span>
         </button>
     </div>
@@ -23,4 +23,15 @@
     public string Title { get; set; }
     [Parameter]
     public bool IsDone { get; set; }
+    [Parameter]
+    public Guid Guid { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid> OnRemoved { get; set; }
+
+
+    public async Task NoteRemoved(EventArgs e)
+    {
+        await OnRemoved.InvokeAsync(Guid);
+    }
 }

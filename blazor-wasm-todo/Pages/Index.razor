@@ -17,24 +17,19 @@
     <div>
         @foreach (var note in notes.OrderByDescending(x => x.DateTime))
         {
-            <NoteCard Title="@note.Title" />
+            <NoteCard Guid="@note.Guid" Title="@note.Title" IsDone="@note.IsDone" OnRemoved="Remove" />
         }
     </div>
 
     @if (notes.Count > 0)
     {
-        <button class="btn btn-danger" @onclick="Clear">Очистить все</button>
+        <button class="btn btn-danger" @onclick="RemoveAll">Очистить все</button>
     }
 </div>
 
 @code{
     private List<Note> notes = Note.GetData();
     private string title;
-
-    private void Clear()
-    {
-        notes.Clear();
-    }
 
     private void Add()
     {
@@ -43,5 +38,16 @@
             notes.Add(new Note(title));
             title = null;
         }
+    }
+
+    private void Remove(Guid guid)
+    {
+        var note = notes.FirstOrDefault(x => x.Guid == guid);
+        notes.Remove(note);
+    }
+
+    private void RemoveAll()
+    {
+        notes.Clear();
     }
 }
