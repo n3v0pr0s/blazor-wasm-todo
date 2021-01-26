@@ -10,12 +10,12 @@
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Введите текст заметки..." @bind-value="@title">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" @onclick="Add">Добавить</button>
+            <button class="btn btn-secondary" type="button" @onclick="Add">Добавить</button>
         </div>
     </div>
 
-    <div>
-        @foreach (var note in notes.OrderByDescending(x => x.DateTime))
+    <div>      
+        @foreach (var note in notes.OrderBy(x => x.IsDone).ThenByDescending(x => x.DateTime))
         {
             <NoteCard Note="@note" OnRemoved="Remove" />
         }

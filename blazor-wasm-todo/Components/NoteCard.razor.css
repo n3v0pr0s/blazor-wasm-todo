@@ -1,0 +1,13 @@
+﻿.alert{
+    background-color: #dedede;
+    transition: 0.2s;
+}
+
+.alert_done {
+    background-color: #b4b4b4;
+    color: gray;
+}
+
+.alert:hover {
+    filter: brightness(105%);
+}

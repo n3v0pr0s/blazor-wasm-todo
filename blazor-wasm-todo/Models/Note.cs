@@ -32,7 +32,7 @@ namespace blazor_wasm_todo.Models
                 new Note("Купить хлеб", true),
                 new Note("Дочитать книгу"),
                 new Note("Выучить ангуляр"),
-                new Note("Познать цзен")
+                new Note("Познать Дзен")
             };
         }
     }
