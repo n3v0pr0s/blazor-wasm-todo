@@ -1,34 +1,48 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">blazor-wasm-todo</a>
+﻿@using blazor_wasm_todo.Models
+
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">Доски</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
+<div class="@NavMenuCssClass">
+    <div class="input-group p-3">
+        <input type="text" class="form-control" placeholder="Введите название..." @bind-value="@name">
+        <div class="input-group-append">
+            <button class="btn btn-success" type="button" @onclick="AddBoard">
+                <span class="oi oi-plus" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+    <ul class="nav flex-column">         
+        @foreach (var board in Boards)
+        {
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="/notes" Match="NavLinkMatch.All">
+                    <span class="oi oi-list" aria-hidden="true"></span> @board.Name
+                </NavLink>
+            </li>
+        }
     </ul>
 </div>
 
 @code {
-    private bool collapseNavMenu = true;
+    private string name;
+    private List<Board> Boards = Board.GetBoards();
 
+    private bool collapseNavMenu = true;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void AddBoard()
+    {
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            Boards.Add(new Board(name));
+            name = null;
+        }
+    }
 
     private void ToggleNavMenu()
     {
