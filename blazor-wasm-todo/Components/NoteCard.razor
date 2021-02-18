@@ -1,16 +1,16 @@
-﻿@using blazor_wasm_todo.Models
+﻿@using blazor_wasm_todo.DTO
 
 <div class="@alertStyle">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center p-0">
         <div class="d-flex justify-content-start align-items-center">
-            <input class="m-1" type="checkbox" @bind="@Note.IsDone" />
-            @if (Note.IsDone)
+            <input class="m-1" type="checkbox" @bind="@Note.is_done" />
+            @if (Note.is_done)
             {
-                <strike>@Note.Title</strike>
+                <strike>@Note.text</strike>
             }
             else
             {
-                @Note.Title
+                @Note.text
             }
         </div>
 
@@ -30,12 +30,12 @@
     public Note Note { get; set; }
 
     [Parameter]
-    public EventCallback<Guid> OnRemoved { get; set; }
+    public EventCallback<int> OnRemoved { get; set; }
 
-    private string alertStyle => this.Note.IsDone ? "alert alert_done" : "alert";
+    private string alertStyle => this.Note.is_done ? "alert alert_done" : "alert";
 
     public async Task RemoveClick(EventArgs e)
     {
-        await OnRemoved.InvokeAsync(Note.Guid);
+        await OnRemoved.InvokeAsync(Note.id);
     }
 }

@@ -1,4 +1,7 @@
-﻿@using blazor_wasm_todo.Models
+﻿@using blazor_wasm_todo.DTO
+@using blazor_wasm_todo.Services.Interfaces
+@inject IBoardService boardService
+
 
 <div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">Доски</a>
@@ -7,6 +10,8 @@
     </button>
 </div>
 
+@if (boards != null)
+{
 <div class="@NavMenuCssClass">
     <div class="input-group p-3">
         <input type="text" class="form-control" placeholder="Введите название..." @bind-value="@name">
@@ -16,30 +21,43 @@
             </button>
         </div>
     </div>
-    <ul class="nav flex-column">         
-        @foreach (var board in Boards)
-        {
-            <li class="nav-item px-3">
-                <NavLink class="nav-link" href="/notes" Match="NavLinkMatch.All">
-                    <span class="oi oi-list" aria-hidden="true"></span> @board.Name
-                </NavLink>
-            </li>
+
+
+    <ul class="nav flex-column">
+        @foreach (var board in boards)
+            {
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="@($"/notes/{board.id}")" Match="NavLinkMatch.Prefix" @onclick="ToggleNavMenu">
+                <span class="oi oi-list" aria-hidden="true"></span> @board.name
+            </NavLink>
+        </li>
         }
     </ul>
+
 </div>
+}
+
 
 @code {
     private string name;
-    private List<Board> Boards = Board.GetBoards();
+    private List<Board> boards;
 
     private bool collapseNavMenu = true;
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void AddBoard()
+    //protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
+    {
+        boards = (await boardService.GetBoards()).ToList();
+    }
+
+    private async Task AddBoard()
     {
         if (!string.IsNullOrWhiteSpace(name))
         {
-            Boards.Add(new Board(name));
+            var newBoard = new Board(name);
+            await boardService.AddBoard(newBoard);
+
             name = null;
         }
     }

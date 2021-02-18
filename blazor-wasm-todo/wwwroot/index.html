@@ -11,8 +11,14 @@
     <link href="blazor-wasm-todo.styles.css" rel="stylesheet" />   
 </head>
 
-<body>
-    <div id="app">Loading...</div>
+<body>    
+    <div id="app">
+        <div class="d-flex justify-content-center m-5">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
