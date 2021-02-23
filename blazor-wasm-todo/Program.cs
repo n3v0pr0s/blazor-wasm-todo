@@ -28,8 +28,6 @@ namespace blazor_wasm_todo
                  //client.BaseAddress = new Uri("https://localhost:5001/"));
 
 
-
-
             await builder.Build().RunAsync();
         }
     }
