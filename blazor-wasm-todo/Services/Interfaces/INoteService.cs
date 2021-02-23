@@ -8,6 +8,7 @@ namespace blazor_wasm_todo.Services.Interfaces
     {
         Task<IEnumerable<Note>> GetNotesByBoardId(int id);
         Task AddNote(Note note);
+        Task StatusChange(Note note);
         Task RemoveNote(int id);
         Task RemoveAllNotesByBoardId(int id);
     }

@@ -20,6 +20,11 @@ namespace blazor_wasm_todo.Services
             await client.PostJsonAsync("api/Notes", note);
         }
 
+        public async Task StatusChange(Note note)
+        {
+            await client.PutJsonAsync($"api/Notes", note);
+        }
+
         public async Task<IEnumerable<Note>> GetNotesByBoardId(int id)
         {
             return await client.GetJsonAsync<Note[]>($"api/Notes/ByBoardId/{id}");

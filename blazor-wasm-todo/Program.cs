@@ -20,10 +20,12 @@ namespace blazor_wasm_todo
 
             builder.Services.AddHttpClient<IBoardService, BoardService>(client =>
                  client.BaseAddress = new Uri("https://roadmap-todo-api.herokuapp.com/"));
+                 //client.BaseAddress = new Uri("https://localhost:5001/"));             
 
 
             builder.Services.AddHttpClient<INoteService, NoteService>(client =>
                  client.BaseAddress = new Uri("https://roadmap-todo-api.herokuapp.com/"));
+                 //client.BaseAddress = new Uri("https://localhost:5001/"));
 
 
 

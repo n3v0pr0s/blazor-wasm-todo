@@ -1,4 +1,9 @@
 ﻿@using blazor_wasm_todo.DTO
+@using blazor_wasm_todo.Services.Interfaces
+
+@inject INoteService noteService
+
+
 
 <div class="@alertStyle">
     <div class="d-flex justify-content-between align-items-center p-0">
@@ -6,11 +11,11 @@
             <input class="m-1" type="checkbox" @bind="@Note.is_done" />
             @if (Note.is_done)
             {
-                <strike>@Note.text</strike>
+            <strike>@Note.text</strike>
             }
             else
             {
-                @Note.text
+            @Note.text
             }
         </div>
 
@@ -25,7 +30,6 @@
 </div>
 
 @code {
-
     [Parameter]
     public Note Note { get; set; }
 

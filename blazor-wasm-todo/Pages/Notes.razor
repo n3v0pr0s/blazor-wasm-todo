@@ -32,8 +32,8 @@
         }
     </div>
     @if (notes.Count > 0)
-        {
-    <button class="btn btn-danger" @onclick="RemoveAll">Очистить все</button>
+    {
+        <button class="btn btn-danger" @onclick="RemoveAll">Очистить все</button>
     }
     }
 </div>
@@ -61,11 +61,14 @@
             await noteService.AddNote(newNote);
 
             title = null;
+            notes.Add(newNote);
         }
     }
 
-    private void Remove(int id)
+    private async Task Remove(int id)
     {
+        await noteService.RemoveNote(id);
+
         var note = notes.FirstOrDefault(x => x.id == id);
         notes.Remove(note);
     }
@@ -73,5 +76,7 @@
     private async Task RemoveAll()
     {
         await noteService.RemoveAllNotesByBoardId(Id);
+
+        notes.Clear();
     }
 }

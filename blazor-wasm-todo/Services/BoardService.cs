@@ -25,5 +25,9 @@ namespace blazor_wasm_todo.Services
             await client.PostJsonAsync("api/Boards", board);
         }
 
+        public async Task RemoveBoard(int id)
+        {
+            await client.DeleteAsync($"api/Boards/{id}");
+        }
     }
 }

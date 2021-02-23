@@ -8,5 +8,6 @@ namespace blazor_wasm_todo.Services.Interfaces
     {
         Task<IEnumerable<Board>> GetBoards();
         Task AddBoard(Board board);
+        Task RemoveBoard(int id);
     }
 }
