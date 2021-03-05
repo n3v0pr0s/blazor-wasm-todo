@@ -1,0 +1,152 @@
+/* /Components/MainLayout.razor.rz.scp.css */
+.page[b-sgf7mncvvb] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.main[b-sgf7mncvvb] {
+    flex: 1;
+    background-color: #cecece;
+}
+
+.sidebar[b-sgf7mncvvb] {
+    background-image: linear-gradient(180deg, #292E49, #536976);
+    /*background-image: linear-gradient(180deg, #b2eea8, #513a56);*/
+}
+
+.top-row[b-sgf7mncvvb] {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row[b-sgf7mncvvb]  a, .top-row .btn-link[b-sgf7mncvvb] {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+    }
+
+    .top-row a:first-child[b-sgf7mncvvb] {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
+    .top-row:not(.auth)[b-sgf7mncvvb] {
+        display: none;
+    }
+
+    .top-row.auth[b-sgf7mncvvb] {
+        justify-content: space-between;
+    }
+
+    .top-row a[b-sgf7mncvvb], .top-row .btn-link[b-sgf7mncvvb] {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-sgf7mncvvb] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-sgf7mncvvb] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-sgf7mncvvb] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .main > div[b-sgf7mncvvb] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+/* /Components/NavMenu.razor.rz.scp.css */
+.navbar-toggler[b-e24bx4m6v9] {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.top-row[b-e24bx4m6v9] {
+    height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.navbar-brand[b-e24bx4m6v9] {
+    font-size: 1.1rem;
+}
+
+.oi[b-e24bx4m6v9] {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
+}
+
+.nav-item[b-e24bx4m6v9] {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type[b-e24bx4m6v9] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-e24bx4m6v9] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-e24bx4m6v9]  a {
+        color: #d7d7d7;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+    }
+
+.nav-item[b-e24bx4m6v9]  a.active {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+}
+
+.nav-item[b-e24bx4m6v9]  a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-e24bx4m6v9] {
+        display: none;
+    }
+
+    .collapse[b-e24bx4m6v9] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+}
+/* /Components/NoteCard.razor.rz.scp.css */
+.alert[b-6k3i739f8u] {
+    background-color: rgba(25, 28, 44, 0.90);
+    color:white;
+    transition: 0.2s;
+}
+
+.alert_done[b-6k3i739f8u] {   
+    background-color: #6c757d;
+    color: white;
+}
+
+.alert:hover[b-6k3i739f8u] {
+    filter: brightness(105%);
+}
+/* /Pages/Notes.razor.rz.scp.css */
