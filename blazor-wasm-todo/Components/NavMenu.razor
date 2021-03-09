@@ -51,7 +51,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        //wtf this called twice???
+        //TODO
+        //find out why this called twice
         boards = (await boardService.GetBoards()).ToList();
     }
 
@@ -72,9 +73,10 @@
         await boardService.RemoveBoard(id);
         boards = (await boardService.GetBoards()).ToList();
 
-        //hardcode
+        //TODO
+        //hardcode refactoring
         if (navigationManager.Uri.EndsWith($"notes/{id}"))
-            navigationManager.NavigateTo("notFound");
+            navigationManager.NavigateTo("");
 
     }
 
